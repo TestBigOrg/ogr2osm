@@ -53,6 +53,9 @@ from osgeo import ogr
 from osgeo import osr
 from geom import *
 
+#reload(sys)
+#sys.setdefaultencoding('utf-8')
+
 # Determine major Python version is 2 or 3
 IS_PYTHON2 = sys.version_info < (3, 0)
 
@@ -379,6 +382,8 @@ def getFeatureTags(ogrfeature, fieldNames):
     for i in range(len(fieldNames)):
         # The field needs to be put into the appropriate encoding and leading or trailing spaces stripped
         if IS_PYTHON2:
+            name = fieldNames[i]
+            field = ogrfeature.GetFieldAsString(i)
             tags[fieldNames[i].decode(options.encoding)] = ogrfeature.GetFieldAsString(i).decode(options.encoding).strip()
         else:
             tags[fieldNames[i]] = ogrfeature.GetFieldAsString(i).strip()
@@ -580,9 +585,9 @@ def output():
     with open(options.outputFile, 'w', buffering=-1) as f:
 
         if options.noUploadFalse:
-            f.write('<?xml version="1.0"?>\n<osm version="0.6" generator="uvmogr2osm">\n')
+            f.write('<?xml version="1.0" encoding="utf-8"?>\n<osm version="0.6" generator="uvmogr2osm">\n')
         else:
-            f.write('<?xml version="1.0"?>\n<osm version="0.6" upload="false" generator="uvmogr2osm">\n')
+            f.write('<?xml version="1.0" encoding="utf-8"?>\n<osm version="0.6" upload="false" generator="uvmogr2osm">\n')
 
         # Build up a dict for optional settings
         attributes = {}
@@ -605,7 +610,7 @@ def output():
             if IS_PYTHON2:
                 f.write(etree.tostring(xmlobject))
             else:
-                f.write(etree.tostring(xmlobject, encoding='unicode'))
+                f.write(etree.tostring(xmlobject, encoding='utf-8'))
             f.write('\n')
 
         for way in ways:
@@ -619,13 +624,14 @@ def output():
                 xmlobject.append(nd)
             if way in featuresmap:
                 for (key, value) in featuresmap[way].tags.items():
+                    print "key: %s , value: %s" % (key,value)
                     tag = etree.Element('tag', {'k':key, 'v':value})
                     xmlobject.append(tag)
 
             if IS_PYTHON2:
                 f.write(etree.tostring(xmlobject))
             else:
-                f.write(etree.tostring(xmlobject, encoding='unicode'))
+                f.write(etree.tostring(xmlobject, encoding='utf-8'))
             f.write('\n')
 
         for relation in relations:
@@ -648,7 +654,7 @@ def output():
             if IS_PYTHON2:
                 f.write(etree.tostring(xmlobject))
             else:
-                f.write(etree.tostring(xmlobject, encoding='unicode'))
+                f.write(etree.tostring(xmlobject, encoding='utf-8'))
             f.write('\n')
 
         f.write('</osm>')

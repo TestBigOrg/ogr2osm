@@ -1,3 +1,5 @@
+## The Spacial version for china words (utf-8)
+
 ogr2osm.py
 ==========
 
@@ -17,14 +19,14 @@ It also makes use of lxml. Although it should fall back to builtin XML implement
 To install ogr2osm and download the default translations the following command 
 can be used:
 
-	git clone --recursive https://github.com/pnorman/ogr2osm
-	
+git clone --recursive https://github.com/pnorman/ogr2osm
+
 To update
 
-	cd ogr2osm
-	git pull
-	git submodule update
-	
+cd ogr2osm
+git pull
+git submodule update
+
 About
 -----
 
@@ -49,33 +51,33 @@ converted to an OSM tag.
 Usage
 -----
 
-	Usage: ogr2osm.py SRCFILE
+Usage: ogr2osm.py SRCFILE
 
-	Options:
-	  -h, --help            show this help message and exit
-	  -t TRANSLATION, --translation=TRANSLATION
-							Select the attribute-tags translation method. See the
-							translations/ directory for valid values.
-	  -o OUTPUT, --output=OUTPUT
-							Set destination .osm file name and location.
-	  -e EPSG_CODE, --epsg=EPSG_CODE
-							EPSG code of source file. Do not include the 'EPSG:'
-							prefix. If specified, overrides projection from source
-							metadata if it exists.
-	  -p PROJ4_STRING, --proj4=PROJ4_STRING
-							PROJ.4 string. If specified, overrides projection from
-							source metadata if it exists.
-	  -v, --verbose         
-	  -d, --debug-tags      Output the tags for every feature parsed.
-	  -f, --force           Force overwrite of output file.
-	  --encoding=ENCODING   Encoding of the source file. If specified, overrides
-							the default of utf-8
-	  --significant-digits=SIGNIFICANTDIGITS
-							Number of decimal places for coordinates
-	  --rounding-digits=ROUNDINGDIGITS
-							Number of decimal places for rounding
-	  --no-memory-copy      Do not make an in-memory working copy
-	  --no-upload-false     Omit upload=false from the completed file to surpress
-							JOSM warnings when uploading.
-	  --id=ID               ID to start counting from for the output file.
-							Defaults to 0.
+Options:
+-h, --help            show this help message and exit
+-t TRANSLATION, --translation=TRANSLATION
+Select the attribute-tags translation method. See the
+translations/ directory for valid values.
+-o OUTPUT, --output=OUTPUT
+Set destination .osm file name and location.
+-e EPSG_CODE, --epsg=EPSG_CODE
+EPSG code of source file. Do not include the 'EPSG:'
+prefix. If specified, overrides projection from source
+metadata if it exists.
+-p PROJ4_STRING, --proj4=PROJ4_STRING
+PROJ.4 string. If specified, overrides projection from
+source metadata if it exists.
+-v, --verbose         
+-d, --debug-tags      Output the tags for every feature parsed.
+-f, --force           Force overwrite of output file.
+--encoding=ENCODING   Encoding of the source file. If specified, overrides
+the default of utf-8
+--significant-digits=SIGNIFICANTDIGITS
+Number of decimal places for coordinates
+--rounding-digits=ROUNDINGDIGITS
+Number of decimal places for rounding
+--no-memory-copy      Do not make an in-memory working copy
+--no-upload-false     Omit upload=false from the completed file to surpress
+JOSM warnings when uploading.
+--id=ID               ID to start counting from for the output file.
+Defaults to 0.
